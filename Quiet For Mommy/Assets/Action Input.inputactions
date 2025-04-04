@@ -1,0 +1,62 @@
+{
+    "name": "Action Input",
+    "maps": [
+        {
+            "name": "Camera",
+            "id": "d645bf76-c3ab-410d-8a22-5cef206d883e",
+            "actions": [
+                {
+                    "name": "MoveCam",
+                    "type": "Button",
+                    "id": "b657a40b-8245-409a-afbb-38b0e752fc67",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ef3b6379-52f0-4943-9621-d006295fb059",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Movement",
+            "id": "1f83a101-2faa-4446-81cd-2c48540e77ae",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "0458c1ad-d8b9-4813-b888-7edecaac55fd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cbf65cf3-de80-4e03-89da-65c9e7c82c9f",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
