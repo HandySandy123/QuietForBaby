@@ -12,7 +12,7 @@ public class CamBehavior : MonoBehaviour
     private Vector3 secondFloor;
     private bool onFirstFloor = true;
     private bool onSecondFloor = false;
-    private float duration = 1;
+    private float duration = 10;
     
     [SerializeField] private float floorHeight;
 
@@ -29,32 +29,28 @@ public class CamBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveCam.performed += ctx => StartCoroutine(MoveCam());
+        moveCam.performed += ctx => MoveCam();
+        if (onFirstFloor && firstFloor != transform.position)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, firstFloor, duration * Time.deltaTime);
+        } else if (onSecondFloor && secondFloor != transform.position)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, secondFloor, duration * Time.deltaTime);
+        }
     }
 
-    IEnumerator MoveCam()
+    void MoveCam()
     {
         if (onFirstFloor)
         {
-            //transform.position = secondFloor * new Vector3(0, Time.deltaTime, 0);
-            while (secondFloor != transform.position)
-            {
-                Debug.Log("Moving Up");
-                transform.position = Vector3.Lerp(transform.position, secondFloor, Time.deltaTime * duration);
-            }
-            
+            onFirstFloor = false;
+            onSecondFloor = true;
         }
         else
         {
-            while (firstFloor != transform.position)
-            {
-                Debug.Log("Moving Down");
-                transform.position = Vector3.Lerp(transform.position, secondFloor, Time.deltaTime * duration);
-            }
-            transform.position = firstFloor;
+            onFirstFloor = true;
+            onSecondFloor = false;
         }
-        onFirstFloor = !onFirstFloor;
-        onSecondFloor = !onSecondFloor;
-        yield return null;
+        
     }
 }

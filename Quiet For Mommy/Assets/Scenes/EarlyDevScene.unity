@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013987a40fc330e4bb2660cc6946a577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorHeight: 10
+  floorHeight: 5
 --- !u!114 &668889947
 MonoBehaviour:
   m_ObjectHideFlags: 0
