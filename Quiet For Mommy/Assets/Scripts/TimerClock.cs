@@ -29,16 +29,18 @@ public class TimerClock : MonoBehaviour
         Quaternion rotation = transform.rotation;
         rotation.z += rotationSpeed;
         transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-        if (selectAsset.triggered)
+        
+    }
+
+    public void OnSelect(InputValue value)
+    {
+        Debug.Log(transform.rotation.eulerAngles.z);
+        if (transform.eulerAngles.z <= correctSpace && transform.eulerAngles.z >= 360 - correctSpace)
         {
-            Debug.Log("Triggered");
+            Debug.Log("Succeeded");
+        } else 
+        {
+            Debug.Log("Failed");
         }
-        // if (selectAsset.triggered && (transform.rotation.z > correctSpace || transform.rotation.z < -correctSpace))
-        // {
-        //     Debug.Log("Succes");
-        // } else if(selectAsset.triggered && transform.rotation.z < -correctSpace || transform.rotation.z > correctSpace)
-        // {
-        //     Debug.Log("Fail");
-        // }
     }
 }
