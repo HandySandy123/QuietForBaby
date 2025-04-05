@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TimerClock : MonoBehaviour
 {
@@ -9,19 +10,35 @@ public class TimerClock : MonoBehaviour
      * The pointer rotates around the Z-axis
      */
 
-    [SerializeField] private float rotationSpeed = 5f;
+    private PlayerInput playerInput;
+    private InputAction selectAsset;
+    
+    [SerializeField] private float rotationSpeed = 20f;
+    [SerializeField] public float correctSpace = 60f; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Quaternion rotation = Quaternion.Euler(0f, 0f, 270f);
-        transform.rotation = rotation;
+        transform.rotation = Quaternion.Euler(0f, 0f, 181f);
+        playerInput = GetComponent<PlayerInput>();
+        selectAsset = playerInput.actions["Select"];
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Quaternion rotation = transform.rotation;
-        // rotation.z += rotationSpeed;
-        // transform.rotation = rotation;
+        Quaternion rotation = transform.rotation;
+        rotation.z += rotationSpeed;
+        transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+        if (selectAsset.triggered)
+        {
+            Debug.Log("Triggered");
+        }
+        // if (selectAsset.triggered && (transform.rotation.z > correctSpace || transform.rotation.z < -correctSpace))
+        // {
+        //     Debug.Log("Succes");
+        // } else if(selectAsset.triggered && transform.rotation.z < -correctSpace || transform.rotation.z > correctSpace)
+        // {
+        //     Debug.Log("Fail");
+        // }
     }
 }
