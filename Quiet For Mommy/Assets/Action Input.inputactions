@@ -34,26 +34,70 @@
             "id": "1f83a101-2faa-4446-81cd-2c48540e77ae",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
+                    "name": "OnMovement",
+                    "type": "Value",
                     "id": "0458c1ad-d8b9-4813-b888-7edecaac55fd",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "cbf65cf3-de80-4e03-89da-65c9e7c82c9f",
-                    "path": "",
+                    "name": "WASD",
+                    "id": "9dbbe1fe-5e2f-42dc-9ac8-3417e13dc20c",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
+                    "action": "OnMovement",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "67cb1be5-d7fa-4f76-bd1b-c43301d8e802",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "b8760221-3880-4dee-b2ad-f11e65760946",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "908dd032-7170-4636-bbb6-0bd65b339bf2",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "dde505c3-44e0-4f1e-b8fe-c3f3a92ed509",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
