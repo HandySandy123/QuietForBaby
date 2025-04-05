@@ -12,6 +12,10 @@ public class PlayerBehavior : MonoBehaviour
     [FormerlySerializedAs("MoveSpeed")] [SerializeField] private float moveSpeed = 10f;
 
     private PlayerInput _playerInput;
+    
+    public Vector3 camPos;
+
+    [SerializeField] private float distToCam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,7 +32,7 @@ public class PlayerBehavior : MonoBehaviour
         
         
         //Debug.Log(Movement);
-        RaycastHit hit; 
+        RaycastHit hit;
         Vector3 castPos = transform.position;
         castPos.y += 1;
         if (Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity))
@@ -41,10 +45,14 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
         
+        Ray r = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
+        camPos = r.GetPoint(distToCam);
+        
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector3(Movement.x * moveSpeed, 0, Movement.y * moveSpeed);
+        //rb.linearVelocity = new Vector3(Movement.x * moveSpeed, 0, Movement.y * moveSpeed);
+        rb.linearVelocity = (new Vector3(Movement.x * moveSpeed, 0, 0) + new Vector3(0, 0, Movement.y * moveSpeed)) / 2;
     }
 }

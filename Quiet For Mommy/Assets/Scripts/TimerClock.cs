@@ -35,7 +35,7 @@ public class TimerClock : MonoBehaviour
     public void OnSelect(InputValue value)
     {
         Debug.Log(transform.rotation.eulerAngles.z);
-        if (transform.eulerAngles.z <= correctSpace && transform.eulerAngles.z >= 360 - correctSpace)
+        if (transform.eulerAngles.z <= correctSpace || transform.eulerAngles.z >= 360 - correctSpace)
         {
             Debug.Log("Succeeded");
         } else 
