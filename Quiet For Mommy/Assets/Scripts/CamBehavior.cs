@@ -20,7 +20,7 @@ public class CamBehavior : MonoBehaviour
     
     [SerializeField] private GameObject player;
     //private PlayerBehavior playerBehavior;
-    [SerializeField] private float distanceFromPlayer = 10f;
+    //[SerializeField] private float distanceFromPlayer = 10f;
     
     public List<Material> materials = new List<Material>();
     private float fadeFactor = 10f;

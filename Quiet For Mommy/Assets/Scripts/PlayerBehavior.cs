@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -6,13 +7,16 @@ public class PlayerBehavior : MonoBehaviour
 {
     SpriteRenderer spr;
     Rigidbody rb;
+    
 
+    private bool isWalking;
     private Vector2 Movement;
     [SerializeField] private float groundDist;
     [FormerlySerializedAs("MoveSpeed")] [SerializeField] private float moveSpeed = 10f;
 
     private PlayerInput _playerInput;
     [SerializeField] private Sprite[] sprites;
+    private GameObject spriteHolder;
     
     //public Vector3 camPos;
 
@@ -21,7 +25,7 @@ public class PlayerBehavior : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spr = GetComponent<SpriteRenderer>();
+        spr = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
         groundDist = spr.bounds.extents.x;
@@ -37,19 +41,27 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         Movement = _playerInput.actions["OnMovement"].ReadValue<Vector2>();
-
+        
         // Raycast to adjust Y position based on ground distance
-        RaycastHit hit;
-        Vector3 castPos = transform.position;
-        castPos.y += 1;
-        if (Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity))
+        // RaycastHit hit;
+        // Vector3 castPos = transform.position;
+        // castPos.y += 1;
+        // if (Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity))
+        // {
+        //     if (hit.collider != null)
+        //     {
+        //         Vector3 movePos = transform.position;
+        //         movePos.y = hit.point.y + groundDist;
+        //         transform.position = movePos;
+        //     }
+        // }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("stairTrigger"))
         {
-            if (hit.collider != null)
-            {
-                Vector3 movePos = transform.position;
-                movePos.y = hit.point.y + groundDist;
-                transform.position = movePos;
-            }
+            Debug.Log("Stair Trigger");
         }
     }
 
@@ -58,11 +70,6 @@ public class PlayerBehavior : MonoBehaviour
         // Apply movement based on input using rb.velocity
         Vector3 movementDirection = new Vector3(Movement.x, 0, Movement.y) * moveSpeed;
         rb.linearVelocity = movementDirection;
-        //rb.AddForce(movementDirection * moveSpeed, ForceMode.Impulse);
-        Debug.Log(rb.GetAccumulatedForce());
-
-        // Debugging movement
-        //Debug.Log(rb.linearVelocity);
 
         if (Movement.x != 0 || Movement.y != 0)
         {
