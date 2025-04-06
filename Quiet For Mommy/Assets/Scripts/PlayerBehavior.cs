@@ -8,7 +8,11 @@ public class PlayerBehavior : MonoBehaviour
 {
     SpriteRenderer spr;
     Rigidbody rb;
-    
+    public AudioSource footstepsSound;
+    public GameObject floorboard;
+    private CreakyFloorboards CF;
+
+
 
     private bool isWalking;
     private bool onFirstFloor;
@@ -37,6 +41,7 @@ public class PlayerBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         _playerInput = new ActionInput();
         groundDist = spr.bounds.extents.x;
+        CF = floorboard.GetComponent<CreakyFloorboards>();
     }
 
     void OnEnable()
@@ -83,6 +88,7 @@ public class PlayerBehavior : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("stairTrigger"))
+
         {
             if (other.gameObject == bottomOfStairs)
             {
@@ -104,6 +110,12 @@ public class PlayerBehavior : MonoBehaviour
                 };
             }
         }
+        Debug.Log("CreakyFloorboard");
+        if (other.gameObject == floorboard)
+        {
+            CF.source.Play();
+           
+        }
     }
 
     void FixedUpdate()
@@ -116,10 +128,12 @@ public class PlayerBehavior : MonoBehaviour
         if (Movement.x != 0 || Movement.y != 0)
         {
             controlAnimation(Movement);
+            footstepsSound.enabled = true;
         }
         else
         {
             spr.sprite = sprites[3]; // Idle sprite
+            footstepsSound.enabled = false;
         }
     }
 
