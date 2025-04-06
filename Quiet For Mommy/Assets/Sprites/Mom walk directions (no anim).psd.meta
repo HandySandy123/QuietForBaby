@@ -100,7 +100,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   multiSpriteImportData: []
   layeredSpriteImportData:
-  - name: From selection
+  - name: Up-walk
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -108,8 +108,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 3623
+      x: 10
+      y: 3635
       width: 832
       height: 1565
     spriteID: 75ee522e3787b8643bface0fd120caa9
@@ -144,7 +144,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 1999, y: 1830}
     spritePosition: {x: 683, y: 1793}
-  - name: From selection
+  - name: Right-Walk
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -153,7 +153,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 5221
+      y: 5227
       width: 1117
       height: 1528
     spriteID: 6e7d28cd4f8659d4596153f9a402ca56
@@ -188,7 +188,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: -511, y: 3467}
     spritePosition: {x: 1640, y: 1754}
-  - name: From selection
+  - name: RD Walk
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -197,9 +197,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 2151
-      y: 5221
-      width: 1014
-      height: 1520
+      y: 5236
+      width: 773
+      height: 1518
     spriteID: d295244f4d069c64e8ea72f84e5ad4eb
     spriteBone: []
     spriteOutline: []
@@ -210,7 +210,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 427, y: 5066}
     spritePosition: {x: 1724, y: 155}
-  - name: Layer 6
+  - name: Down-walk
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
