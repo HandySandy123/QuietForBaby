@@ -19,11 +19,12 @@ public class CamBehavior : MonoBehaviour
     [SerializeField] private float floorHeight;
     
     [SerializeField] private GameObject player;
-    private PlayerBehavior playerBehavior;
-    [SerializeField] private float distanceFromPlayer;
+    //private PlayerBehavior playerBehavior;
+    [SerializeField] private float distanceFromPlayer = 10f;
     
     public List<Material> materials = new List<Material>();
     private float fadeFactor = 10f;
+    private bool isMovingFloors = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,7 +34,7 @@ public class CamBehavior : MonoBehaviour
         moveCam = inputActionAsset.actions.FindAction("MoveCam");
         firstFloorPos = transform.position;
         secondFloorPos = transform.position + Vector3.up * floorHeight;
-        playerBehavior = player.GetComponent<PlayerBehavior>();
+        //playerBehavior = player.GetComponent<PlayerBehavior>();
         
         foreach (GameObject go in firstFloor)
         {
@@ -46,35 +47,32 @@ public class CamBehavior : MonoBehaviour
             }
         }
 
-        // foreach (var mat in materials)
-        // {
-        //     Debug.Log(mat.GetInstanceID());
-        // }
+        //transform.position = playerBehavior.camPos + new Vector3(distanceFromPlayer, 0, distanceFromPlayer);
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveCam.performed += ctx => changeFloors();
-        if (onFirstFloor && firstFloorPos != transform.position)
+        
+        moveCam.performed += ctx =>
+        {
+            changeFloors();
+            isMovingFloors = true;
+        };
+        
+        if (onFirstFloor && firstFloorPos != transform.position && isMovingFloors)
         {
             transform.position = Vector3.MoveTowards(transform.position, firstFloorPos, duration * Time.deltaTime);
-        } else if (onSecondFloor && secondFloorPos != transform.position)
+        } else if (onSecondFloor && secondFloorPos != transform.position && isMovingFloors)
         {
             transform.position = Vector3.MoveTowards(transform.position, secondFloorPos, duration * Time.deltaTime);
-        }
-        else
+        } else if ((onFirstFloor && firstFloorPos == transform.position) ||
+                   (onSecondFloor && secondFloorPos == transform.position))
         {
-            followPlayer();
+            isMovingFloors = false;
         }
     }
 
-    void followPlayer()
-    {
-        transform.position = playerBehavior.camPos;
-        Vector4 playerRot = player.transform.rotation.eulerAngles;
-        transform.Rotate(-playerRot.x, -playerRot.y, playerRot.z);
-    }
     void changeFloors()
     {
         
@@ -98,7 +96,6 @@ public class CamBehavior : MonoBehaviour
             }
             //StartCoroutine(FadeOut());
         }
-        
     }
 
     private IEnumerator FadeIn()
