@@ -100,6 +100,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Clock timer",
+            "id": "29f5d975-0c77-473d-a5dd-53fe526e9856",
+            "actions": [
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "2bd5a302-c779-421d-8e8e-fe6156cbd37f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "300862f2-529a-44de-b92d-c7e7c4a1e3f8",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
