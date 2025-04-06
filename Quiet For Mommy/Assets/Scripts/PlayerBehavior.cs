@@ -16,7 +16,9 @@ public class PlayerBehavior : MonoBehaviour
 
     private PlayerInput _playerInput;
     [SerializeField] private Sprite[] sprites;
-    private GameObject spriteHolder;
+    private GameObject playerSprite;
+    [SerializeField] private GameObject bottomOfStairs;
+    [SerializeField] private GameObject topOfStairs;
     
     //public Vector3 camPos;
 
@@ -42,26 +44,19 @@ public class PlayerBehavior : MonoBehaviour
     {
         Movement = _playerInput.actions["OnMovement"].ReadValue<Vector2>();
         
-        // Raycast to adjust Y position based on ground distance
-        // RaycastHit hit;
-        // Vector3 castPos = transform.position;
-        // castPos.y += 1;
-        // if (Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity))
-        // {
-        //     if (hit.collider != null)
-        //     {
-        //         Vector3 movePos = transform.position;
-        //         movePos.y = hit.point.y + groundDist;
-        //         transform.position = movePos;
-        //     }
-        // }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("stairTrigger"))
         {
-            Debug.Log("Stair Trigger");
+            if (other.gameObject == bottomOfStairs)
+            {
+                transform.position = topOfStairs.transform.position;
+            } else if (other.gameObject == topOfStairs)
+            {
+                transform.position = bottomOfStairs.transform.position;
+            }
         }
     }
 
@@ -93,9 +88,7 @@ public class PlayerBehavior : MonoBehaviour
         bool rightWalk = !Mathf.Approximately(x, 1) && !Mathf.Approximately(x, -1) && Mathf.Approximately(y, 0.71f);
         bool RDwalk = (x == 0 && Mathf.Approximately(y, -1)) ||
                        y == 0 && Mathf.Approximately(x, -1); // Down-left
-
-        bool downWalk = !upWalk || !rightWalk || !RDwalk;
-
+        
         // Assign correct sprite based on movement direction
         if (upWalk)
         {
