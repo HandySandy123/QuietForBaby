@@ -8,6 +8,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private Vector3 currentPos;
     private Rigidbody rb;
+    public bool climbingStairs = false;
 
     private Animation walkAnimation;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
