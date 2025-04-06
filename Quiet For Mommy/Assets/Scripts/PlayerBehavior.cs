@@ -7,7 +7,8 @@ public class PlayerBehavior : MonoBehaviour
 {
     SpriteRenderer spr;
     Rigidbody rb;
-    
+    public AudioSource footstepsSound;
+
 
     private bool isWalking;
     private Vector2 Movement;
@@ -74,10 +75,12 @@ public class PlayerBehavior : MonoBehaviour
         if (Movement.x != 0 || Movement.y != 0)
         {
             controlAnimation(Movement);
+            footstepsSound.enabled = true;
         }
         else
         {
             spr.sprite = sprites[3]; // Idle sprite
+            footstepsSound.enabled = false;
         }
     }
 
