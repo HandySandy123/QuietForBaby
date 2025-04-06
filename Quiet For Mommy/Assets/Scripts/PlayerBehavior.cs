@@ -64,14 +64,14 @@ public class PlayerBehavior : MonoBehaviour
         // Debugging movement
         //Debug.Log(rb.linearVelocity);
 
-        // if (Movement.x != 0 || Movement.y != 0)
-        // {
-        //     controlAnimation(Movement);
-        // }
-        // else
-        // {
-        //     spr.sprite = sprites[3]; // Idle sprite
-        // }
+        if (Movement.x != 0 || Movement.y != 0)
+        {
+            controlAnimation(Movement);
+        }
+        else
+        {
+            spr.sprite = sprites[3]; // Idle sprite
+        }
     }
 
     void controlAnimation(Vector2 input)

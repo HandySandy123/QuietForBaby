@@ -814,6 +814,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PuppyPlayer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6528406638094519525, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: sprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6528406638094519525, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6857119285773463644, guid: 1777336e79da1f841a4b74539afbf144, type: 3}
+    - target: {fileID: 6528406638094519525, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 6159513253461261253, guid: 1777336e79da1f841a4b74539afbf144, type: 3}
+    - target: {fileID: 6528406638094519525, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: 'sprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: -1425598643567952996, guid: 1777336e79da1f841a4b74539afbf144, type: 3}
+    - target: {fileID: 6528406638094519525, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: 'sprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: -5955247507721016986, guid: 1777336e79da1f841a4b74539afbf144, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
