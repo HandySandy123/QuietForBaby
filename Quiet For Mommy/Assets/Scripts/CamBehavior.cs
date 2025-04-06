@@ -54,49 +54,9 @@ public class CamBehavior : MonoBehaviour
     void Update()
     {
         
-        moveCam.performed += ctx =>
-        {
-            changeFloors();
-            isMovingFloors = true;
-        };
-        
-        if (onFirstFloor && firstFloorPos != transform.position && isMovingFloors)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, firstFloorPos, duration * Time.deltaTime);
-        } else if (onSecondFloor && secondFloorPos != transform.position && isMovingFloors)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, secondFloorPos, duration * Time.deltaTime);
-        } else if ((onFirstFloor && firstFloorPos == transform.position) ||
-                   (onSecondFloor && secondFloorPos == transform.position))
-        {
-            isMovingFloors = false;
-        }
     }
 
-    void changeFloors()
-    {
-        
-        if (onFirstFloor)
-        {
-            onFirstFloor = false;
-            onSecondFloor = true;
-            foreach (GameObject go in firstFloor)
-            {
-                go.GetComponent<Renderer>().enabled = true;
-            }
-            //StartCoroutine(FadeIn());
-        }
-        else
-        {
-            onFirstFloor = true;
-            onSecondFloor = false;
-            foreach (GameObject go in firstFloor)
-            {
-                go.GetComponent<Renderer>().enabled = false;
-            }
-            //StartCoroutine(FadeOut());
-        }
-    }
+    
 
     private IEnumerator FadeIn()
     {

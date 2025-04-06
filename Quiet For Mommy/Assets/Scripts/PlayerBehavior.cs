@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.Serialization;
 
 public class PlayerBehavior : MonoBehaviour
@@ -10,15 +11,19 @@ public class PlayerBehavior : MonoBehaviour
     
 
     private bool isWalking;
+    private bool onFirstFloor;
     private Vector2 Movement;
+    private float interact;
     [SerializeField] private float groundDist;
     [FormerlySerializedAs("MoveSpeed")] [SerializeField] private float moveSpeed = 10f;
-
-    private PlayerInput _playerInput;
+    
+    private ActionInput _playerInput;
+    private InputAction onMovement;
     [SerializeField] private Sprite[] sprites;
     private GameObject playerSprite;
     [SerializeField] private GameObject bottomOfStairs;
     [SerializeField] private GameObject topOfStairs;
+    private HID.Button interactButton;
     
     //public Vector3 camPos;
 
@@ -27,14 +32,43 @@ public class PlayerBehavior : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         spr = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody>();
-        _playerInput = GetComponent<PlayerInput>();
+        _playerInput = new ActionInput();
         groundDist = spr.bounds.extents.x;
     }
 
+    void OnEnable()
+    {
+        _playerInput.Enable();
+        _playerInput.Movement.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _playerInput.Disable();
+    }
+
+    public void OnMovement(InputAction.CallbackContext context)
+    {
+        Movement = context.ReadValue<Vector2>();
+        rb.linearVelocity = Movement * moveSpeed;
+        //Movement = context.ReadValue<Vector2>();
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        _playerInput.Enable();
+        interact = _playerInput.Movement.OnSelect.ReadValue<float>();
+        if (_playerInput.Movement.OnSelect.IsPressed())
+        {
+            Debug.Log(_playerInput.Movement.OnSelect.IsPressed());
+        }
+    }
     void Awake()
     {
+        _playerInput = new ActionInput();
         Ray r = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
         //camPos = r.GetPoint(distToCam);
     }
@@ -42,26 +76,39 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement = _playerInput.actions["OnMovement"].ReadValue<Vector2>();
+        //Debug.Log(Movement);
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("stairTrigger"))
         {
             if (other.gameObject == bottomOfStairs)
             {
-                transform.position = topOfStairs.transform.position;
+                Debug.Log("bottomOfStairs");
+                if (_playerInput.Movement.OnSelect.IsPressed())
+                {
+                    Debug.Log("Transporting!");
+                    transform.position = topOfStairs.transform.position;
+                    onFirstFloor = true;
+                };
             } else if (other.gameObject == topOfStairs)
             {
-                transform.position = bottomOfStairs.transform.position;
+                Debug.Log("topOfStairs");
+                if(_playerInput.Movement.OnSelect.IsPressed())
+                {
+                    Debug.Log("Transporting!");
+                    transform.position = bottomOfStairs.transform.position;
+                    onFirstFloor = false;
+                };
             }
         }
     }
 
     void FixedUpdate()
     {
+        
         // Apply movement based on input using rb.velocity
         Vector3 movementDirection = new Vector3(Movement.x, 0, Movement.y) * moveSpeed;
         rb.linearVelocity = movementDirection;

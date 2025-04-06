@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -10,14 +11,13 @@ public class PlayerAnimation : MonoBehaviour
     private Rigidbody rb;
     public bool climbingStairs = false;
 
-    private Animation walkAnimation;
+    [SerializeField] private AnimationClip walkAnimation;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponentInParent<Rigidbody>();
         Movement = rb.linearVelocity;
-        walkAnimation = anim.GetComponent<Animation>();
         Debug.Log(walkAnimation.name);
     }
 
