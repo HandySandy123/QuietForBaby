@@ -8,6 +8,9 @@ public class PlayerBehavior : MonoBehaviour
     SpriteRenderer spr;
     Rigidbody rb;
     public AudioSource footstepsSound;
+    public GameObject floorboard;
+    private CreakyFloorboards CF;
+
 
 
     private bool isWalking;
@@ -30,6 +33,7 @@ public class PlayerBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
         groundDist = spr.bounds.extents.x;
+        CF = floorboard.GetComponent<CreakyFloorboards>();
     }
 
     void Awake()
@@ -61,8 +65,15 @@ public class PlayerBehavior : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("stairTrigger"))
+
         {
             Debug.Log("Stair Trigger");
+        }
+        Debug.Log("CreakyFloorboard");
+        if (other.gameObject == floorboard)
+        {
+            CF.source.Play();
+           
         }
     }
 
