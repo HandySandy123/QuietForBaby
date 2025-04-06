@@ -128,13 +128,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194204832}
+  - component: {fileID: 194204834}
   - component: {fileID: 194204831}
   - component: {fileID: 194204830}
-  - component: {fileID: 194204834}
   - component: {fileID: 194204833}
   - component: {fileID: 194204835}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PuppyPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundDist: 0
   moveSpeed: 20
+  sprites: []
 --- !u!212 &194204831
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -390,7 +391,7 @@ Transform:
   m_GameObject: {fileID: 668889942}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -8.16, y: 5.29, z: -8.32}
+  m_LocalPosition: {x: -8.159999, y: 5.289999, z: -8.319998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -408,7 +409,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013987a40fc330e4bb2660cc6946a577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstFloor: []
   floorHeight: 5
+  player: {fileID: 0}
+  distanceFromPlayer: 10
+  materials: []
 --- !u!114 &668889947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,12 +758,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3946412347089392883
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1935926473533693276, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6857119285773463644, guid: 1777336e79da1f841a4b74539afbf144, type: 3}
+    - target: {fileID: 1956277440628839788, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956277440628839788, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956277440628839788, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956277440628839788, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.89239913
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956277440628839788, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.23911765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956277440628839788, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.3696438
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956277440628839788, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.09904577
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956277440628839788, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956277440628839788, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956277440628839788, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351807489121424311, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
+      propertyPath: m_Name
+      value: PuppyPlayer (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0e4e008599973a341aa037f09e54bb70, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 668889945}
   - {fileID: 1008292920}
   - {fileID: 948470058}
   - {fileID: 1395095927}
   - {fileID: 194204832}
+  - {fileID: 3946412347089392883}
+  - {fileID: 668889945}
