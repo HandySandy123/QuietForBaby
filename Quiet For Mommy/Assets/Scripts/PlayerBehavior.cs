@@ -64,10 +64,9 @@ public class PlayerBehavior : MonoBehaviour
                 transform.position = bottomOfStairs.transform.position;
             }
         }
-        Debug.Log("CreakyFloorboard");
         if (other.gameObject == floorboard)
         {
-            CF.source.Play();
+           // CF.source.Play();
            
         }
     }
