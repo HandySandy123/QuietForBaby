@@ -30,7 +30,6 @@ public class CamBehavior : MonoBehaviour
     void Start()
     {
         inputActionAsset = GetComponent<PlayerInput>();
-        Debug.Log(inputActionAsset.name);
         moveCam = inputActionAsset.actions.FindAction("MoveCam");
         firstFloorPos = transform.position;
         secondFloorPos = transform.position + Vector3.up * floorHeight;
