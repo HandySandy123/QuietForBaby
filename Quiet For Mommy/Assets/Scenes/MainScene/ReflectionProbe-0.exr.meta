@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Quiet For Mommy/Assets/Scenes/MainScene/ReflectionProbe-0.exr.meta
 guid: 2b2acb4294c4c4be5af0356fd0739d21
+=======
+guid: ec5f747a0fc440b45a9e1226a730fa70
+>>>>>>> ce51a450866eca0510c9b0df055dc8541c3a8397:Quiet For Mommy/Assets/Sprites/Objects_+_Baby.psd.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -55,7 +59,7 @@ TextureImporter:
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0
-  textureShape: 2
+  textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
   flipbookColumns: 1
