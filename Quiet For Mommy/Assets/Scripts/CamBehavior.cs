@@ -18,6 +18,7 @@ public class CamBehavior : MonoBehaviour
     [SerializeField] private GameObject[] firstFloor;
     [SerializeField] private float floorHeight;
     
+    
     [SerializeField] private GameObject player;
     //private PlayerBehavior playerBehavior;
     //[SerializeField] private float distanceFromPlayer = 10f;
@@ -30,23 +31,21 @@ public class CamBehavior : MonoBehaviour
     void Start()
     {
         inputActionAsset = GetComponent<PlayerInput>();
-        moveCam = inputActionAsset.actions.FindAction("MoveCam");
+        moveCam = inputActionAsset.actions["MoveCam"];
         firstFloorPos = transform.position;
         secondFloorPos = transform.position + Vector3.up * floorHeight;
-        //playerBehavior = player.GetComponent<PlayerBehavior>();
         
         foreach (GameObject go in firstFloor)
         {
-            foreach (var comp in go.GetComponent<Renderer>().materials)
+            var goMaterials = go.GetComponent<Renderer>().materials;
+            foreach (var mat in goMaterials)
             {
-                if (!materials.Contains(comp))
+                if (!materials.Contains(mat))
                 {
-                    materials.Add(comp);
+                    materials.Add(mat);
                 }
             }
         }
-
-        //transform.position = playerBehavior.camPos + new Vector3(distanceFromPlayer, 0, distanceFromPlayer);
     }
 
     // Update is called once per frame
