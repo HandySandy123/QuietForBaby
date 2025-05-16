@@ -20,7 +20,6 @@ public class TimerClock : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(0f, 0f, 181f);
         playerInput = GetComponent<PlayerInput>();
-        selectAsset = playerInput.actions["Select"];
     }
 
     // Update is called once per frame

@@ -23,6 +23,8 @@ public class PlayerBehavior : MonoBehaviour
     private GameObject playerSprite;
     [SerializeField] private GameObject bottomOfStairs;
     [SerializeField] private GameObject topOfStairs;
+
+    public MinigameTrigger minigameTrigger; // add a reference to the MinigameTrigger script
     
     //public Vector3 camPos;
 
@@ -31,17 +33,33 @@ public class PlayerBehavior : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spr = GetComponentInChildren<SpriteRenderer>();
-        rb = GetComponent<Rigidbody>();
-        _playerInput = GetComponent<PlayerInput>();
-        groundDist = spr.bounds.extents.x;
-        CF = floorboard.GetComponent<CreakyFloorboards>();
+
     }
 
+    /// <summary>
+    /// Called when the script is loaded
+    /// </summary>
     void Awake()
     {
-        Ray r = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-        //camPos = r.GetPoint(distToCam);
+        // Check if the MinigameTrigger object exists
+        minigameTrigger = FindObjectOfType<MinigameTrigger>();
+        if (minigameTrigger != null)
+        {
+            Debug.Log("MinigameTrigger Object found!");
+        }
+
+        // Get the SpriteRenderer and Rigidbody components
+        spr = GetComponentInChildren<SpriteRenderer>();
+        rb = GetComponent<Rigidbody>();
+
+        // Get the PlayerInput component
+        _playerInput = GetComponent<PlayerInput>();
+
+        // Calculate the distance from the player to the ground
+        groundDist = spr.bounds.extents.x;
+
+        // Get the CreakyFloorboards component from the floorboard object
+        CF = floorboard.GetComponent<CreakyFloorboards>();
     }
 
     // Update is called once per frame
@@ -73,20 +91,23 @@ public class PlayerBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Apply movement based on input using rb.velocity
-        Vector3 movementDirection = new Vector3(Movement.x, 0, Movement.y) * moveSpeed;
-        rb.linearVelocity = movementDirection;
+        if (minigameTrigger != null && !minigameTrigger.ColOnToys)
+        {
+            // Apply movement based on input using rb.velocity
+            Vector3 movementDirection = new Vector3(Movement.x, 0, Movement.y) * moveSpeed;
+            rb.linearVelocity = movementDirection;
 
-        if (Movement.x != 0 || Movement.y != 0)
-        {
-            controlAnimation(Movement);
-            footstepsSound.enabled = true;
-        }
-        else
-        {
-            spr.sprite = sprites[3]; // Idle sprite
-            footstepsSound.enabled = false;
-        }
+            if (Movement.x != 0 || Movement.y != 0)
+            {
+                controlAnimation(Movement);
+                footstepsSound.enabled = true;
+            }
+            else
+            {
+                spr.sprite = sprites[3]; // Idle sprite
+                footstepsSound.enabled = false;
+            }
+        } 
     }
 
     void controlAnimation(Vector2 input)
